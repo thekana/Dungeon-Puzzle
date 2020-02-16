@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="10.0">
+         <children>
+            <GridPane fx:id="square" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="File name :" />
+                  <TextField fx:id="fileNameTextBox" prefHeight="25.0" prefWidth="129.0" promptText="Enter file name" />
+                  <Button fx:id="createButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleCreateButton" text="Create" />
+                  <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleBackButton" text="Menu" />
+                  <ComboBox fx:id="actionBox" prefHeight="25.0" prefWidth="114.0" promptText="Select Action" />
+                  <Button fx:id="apply" mnemonicParsing="false" onAction="#handleApplyButton" text="Apply Action" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose One Basic Goal" />
+                  <ComboBox fx:id="goal" prefWidth="150.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</Pane>
