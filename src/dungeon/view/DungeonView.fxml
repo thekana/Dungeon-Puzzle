@@ -120,23 +120,6 @@
             <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#pressPause" text="Pause" />
             <Button fx:id="menuButton" mnemonicParsing="false" onAction="#pressMenu" text="Back to Menu" visible="false" />
             <Button fx:id="retryButton" mnemonicParsing="false" onAction="#pressRetry" text="Retry" visible="false" />
-            <VBox fx:id="config" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" visible="false">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="17.0" prefWidth="282.0" spacing="20.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Volume" textAlignment="CENTER">
-                           <font>
-                              <Font name="Arial" size="14.0" />
-                           </font>
-                        </Text>
-                        <Slider fx:id="soundSlider" prefHeight="16.0" prefWidth="200.0" value="50.0" />
-                     </children>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets left="5.0" right="5.0" />
-               </VBox.margin>
-            </VBox>
          </children>
       </VBox>
    </VBox>

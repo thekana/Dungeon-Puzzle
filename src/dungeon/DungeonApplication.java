@@ -20,7 +20,6 @@ public class DungeonApplication extends Application {
     };
     // Global config
     private static int game_speed = 50;
-    private static int game_volume = 50;
 
     public static int getGameSpeed() {
         return game_speed;
@@ -28,14 +27,6 @@ public class DungeonApplication extends Application {
 
     public static void setGameSpeed(int speed) {
         game_speed = speed;
-    }
-
-    public static int getGameVolume() {
-        return game_volume;
-    }
-
-    public static void setGameVolume(int volume) {
-        game_volume = volume;
     }
 
     public static String[] getLevelsJson() {

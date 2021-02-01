@@ -22,7 +22,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -71,9 +70,6 @@ public abstract class DungeonController {
     private Button menuButton;
     @FXML
     private VBox config;
-    @FXML
-    private Slider soundSlider;
-
 
     private MenuScreen menuScreen;
     private DungeonScreen currDungeonScreen;
@@ -139,10 +135,6 @@ public abstract class DungeonController {
         trackInventory();
         trackStatus();
         trackGoal();
-
-        // track the volume
-        soundSlider.valueProperty().addListener(
-                (ov, old_val, new_val) -> DungeonApplication.setGameVolume(new_val.intValue()));
     }
 
     void trackEntities() {

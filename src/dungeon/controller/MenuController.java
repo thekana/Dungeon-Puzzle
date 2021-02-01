@@ -41,12 +41,6 @@ public class MenuController {
         for (File file : readDungeons())
             dungeonChoice.getItems().add(file.getName());
 
-        // track the config
-        soundSlider.valueProperty().addListener((ov, old_val, new_val) -> {
-            soundInfo.setText(new_val.intValue() + " / 100");
-            DungeonApplication.setGameVolume(new_val.intValue());
-        });
-
         difficultyChoice.getItems().addAll("Easy", "Medium", "Hard");
         difficultyChoice.setValue("Medium");
         difficultyChoice.getSelectionModel().selectedItemProperty().addListener((ov, old_val, new_val) -> {

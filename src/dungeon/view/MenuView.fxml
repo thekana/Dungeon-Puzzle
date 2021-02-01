@@ -107,24 +107,6 @@
                   </Text>
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="368.0" spacing="5.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="17.0" prefWidth="282.0" spacing="20.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sound Volume" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="soundInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="50 / 100" textAlignment="CENTER">
-                                 <font>
-                                    <Font name="Arial" size="13.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Text>
-                              <Slider fx:id="soundSlider" prefHeight="16.0" prefWidth="200.0" value="50.0" />
-                           </children>
-                        </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="282.0" spacing="20.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Game Difficulty" textAlignment="CENTER">
