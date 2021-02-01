@@ -7,36 +7,36 @@ import java.util.List;
 
 public class AndGoals extends Goal {
 
-	private List<Goal> subgoals = new ArrayList<Goal>();
+    private List<Goal> subgoals = new ArrayList<Goal>();
 
-	public AndGoals(Dungeon dungeon) {
-		super(dungeon);
-		setIsLeaf(false);
-	}
+    public AndGoals(Dungeon dungeon) {
+        super(dungeon);
+        setIsLeaf(false);
+    }
 
-	@Override
-	public void addSubgoal(Goal goal) {
-		subgoals.add(goal);
-	}
+    @Override
+    public void addSubgoal(Goal goal) {
+        subgoals.add(goal);
+    }
 
-	@Override
-	public void removeSubgoal(Goal goal) {
-		subgoals.remove(goal);
-	}
+    @Override
+    public void removeSubgoal(Goal goal) {
+        subgoals.remove(goal);
+    }
 
-	@Override
-	public List<Goal> getSubgoals() {
-		return subgoals;
-	}
+    @Override
+    public List<Goal> getSubgoals() {
+        return subgoals;
+    }
 
-	public void update() {
-		subgoals.forEach(Goal::update);
-		setSatisfied(subgoals.stream().allMatch(Goal::isSatisfied));
-	}
+    public void update() {
+        subgoals.forEach(Goal::update);
+        setSatisfied(subgoals.stream().allMatch(Goal::isSatisfied));
+    }
 
-	@Override
-	public String toString() {
-		return "AndGoals: ";
-	}
+    @Override
+    public String toString() {
+        return "AndGoals: ";
+    }
 
 }

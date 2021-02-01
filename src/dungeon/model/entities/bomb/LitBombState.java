@@ -1,6 +1,7 @@
 package dungeon.model.entities.bomb;
 
 public interface LitBombState {
-	public String getImagePath();
-	public void nextState();
+    public String getImagePath();
+
+    public void nextState();
 }

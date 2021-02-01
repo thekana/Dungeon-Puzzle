@@ -7,46 +7,46 @@ import dungeon.model.entities.Player;
 
 public class Door extends Entity {
 
-	private int id;
-	private DoorState state;
+    private int id;
+    private DoorState state;
 
-	public Door(int x, int y, Dungeon dungeon, int id) {
-		super(x, y, dungeon);
-		this.id = id;
-		this.state = new DoorClosedState(this);
-	}
+    public Door(int x, int y, Dungeon dungeon, int id) {
+        super(x, y, dungeon);
+        this.id = id;
+        this.state = new DoorClosedState(this);
+    }
 
-	@Override
-	public Boolean canPassThrough() {
-		return this.state.canPassThrough();
-	}
+    @Override
+    public Boolean canPassThrough() {
+        return this.state.canPassThrough();
+    }
 
-	/**
-	 * @param state the state to set
-	 */
-	public void setState(DoorState state) {
-		this.state = state;
-	}
+    /**
+     * @param state the state to set
+     */
+    public void setState(DoorState state) {
+        this.state = state;
+    }
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
 
-	public void open() {
-		state.nextState();
-	}
+    public void open() {
+        state.nextState();
+    }
 
-	public void collideWith(Entity entity) {
-		if (entity instanceof Player)
-			this.getDungeon().tryOpenDoor(this);
-	}
+    public void collideWith(Entity entity) {
+        if (entity instanceof Player)
+            this.getDungeon().tryOpenDoor(this);
+    }
 
-	@Override
-	public EntityType type() {
-		return EntityType.DOOR;
-	}
+    @Override
+    public EntityType type() {
+        return EntityType.DOOR;
+    }
 
 }

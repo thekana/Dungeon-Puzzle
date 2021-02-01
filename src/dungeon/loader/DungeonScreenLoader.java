@@ -1,10 +1,10 @@
 package dungeon.loader;
 
-import javafx.stage.Stage;
 import dungeon.controller.FreeDungeonController;
 import dungeon.controller.StoryDungeonController;
 import dungeon.view.DungeonScreen;
 import dungeon.view.MenuScreen;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.LinkedList;

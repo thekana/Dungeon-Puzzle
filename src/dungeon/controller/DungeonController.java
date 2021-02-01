@@ -1,5 +1,15 @@
 package dungeon.controller;
 
+import dungeon.DungeonApplication;
+import dungeon.loader.DungeonControllerLoader;
+import dungeon.model.Direction;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.Entity;
+import dungeon.model.goal.Goal;
+import dungeon.model.inventory.Inventory;
+import dungeon.model.status.Status;
+import dungeon.view.DungeonScreen;
+import dungeon.view.MenuScreen;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -9,7 +19,10 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,396 +34,390 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
-import dungeon.DungeonApplication;
-import dungeon.loader.DungeonControllerLoader;
-import dungeon.model.Direction;
-import dungeon.model.Dungeon;
-import dungeon.model.entities.Entity;
-import dungeon.model.goal.Goal;
-import dungeon.model.inventory.Inventory;
-import dungeon.model.status.Status;
-import dungeon.view.DungeonScreen;
-import dungeon.view.MenuScreen;
 
 import java.util.List;
 
 /**
  * A JavaFX controller for the dungeon.
- * 
- * @author Robert Clifton-Everest
  *
+ * @author Robert Clifton-Everest
  */
 public abstract class DungeonController {
 
-	@FXML
-	private GridPane squares;
-	@FXML
-	private VBox gameInfo;
-	@FXML
-	private VBox inventoryInfo;
-	@FXML
-	private VBox goalInfo;
-	@FXML
-	private HBox root;
-	@FXML
-	private Label bombInfo;
-	@FXML
-	private Label swordInfo;
-	@FXML
-	private Label treasureInfo;
-	@FXML
-	private Label keyInfo;
+    @FXML
+    private GridPane squares;
+    @FXML
+    private VBox gameInfo;
+    @FXML
+    private VBox inventoryInfo;
+    @FXML
+    private VBox goalInfo;
+    @FXML
+    private HBox root;
+    @FXML
+    private Label bombInfo;
+    @FXML
+    private Label swordInfo;
+    @FXML
+    private Label treasureInfo;
+    @FXML
+    private Label keyInfo;
 
-	@FXML
-	private Button pauseButton;
-	@FXML
-	private Button retryButton;
-	@FXML
-	private Button menuButton;
-	@FXML
-	private VBox config;
-	@FXML
-	private Slider soundSlider;
-
-
-	private MenuScreen menuScreen;
-	private DungeonScreen currDungeonScreen;
-	private boolean isPaused = false;
-
-	private List<ImageView> initialEntities;
-	private Dungeon dungeon;
-	private DungeonControllerLoader loader;
-	private Timeline timeline;
+    @FXML
+    private Button pauseButton;
+    @FXML
+    private Button retryButton;
+    @FXML
+    private Button menuButton;
+    @FXML
+    private VBox config;
+    @FXML
+    private Slider soundSlider;
 
 
-	public DungeonController(DungeonScreen screen) {
-		this.currDungeonScreen = screen;
-	}
+    private MenuScreen menuScreen;
+    private DungeonScreen currDungeonScreen;
+    private boolean isPaused = false;
 
-	public DungeonController(Dungeon dungeon, List<ImageView> initialEntities, DungeonControllerLoader loader) {
-		setDungeon(dungeon);
-		setLoader(loader);
-		setInitialEntities(initialEntities);
-	}
-
-	public void setDungeon(Dungeon dungeon) {
-		this.dungeon = dungeon;
-		this.dungeon.setController(this);
-	}
-
-	public void setInitialEntities(List<ImageView> initialEntities) {
-		this.initialEntities = initialEntities;
-	}
-
-	public void setLoader(DungeonControllerLoader loader) {
-		this.loader = loader;
-	}
-
-	public void startDungeon() {
-		if (dungeon != null) {
-			trackInventory();
-			trackStatus();
-			// timeline
-			this.timeline = new Timeline();
-			this.timeline.setCycleCount(Animation.INDEFINITE);
-			this.timeline.setAutoReverse(false);
-			this.timeline.getKeyFrames().add(
-					new KeyFrame(Duration.millis(DungeonApplication.getGameSpeed() * 10),
-							e -> { if (!dungeon.isGameOver()) this.dungeon.tick();}));
-			this.timeline.play();
-		} else {
-			System.out.println("Dungeon has not been set!");
-		}
-	}
-
-	@FXML
-	public void initialize() {
-		// Add the ground first so it is below all other entities
-		Image ground = new Image("file:images/dirt_0_new.png");
-		for (int x = 0; x < dungeon.getWidth(); x++) {
-			for (int y = 0; y < dungeon.getHeight(); y++) {
-				squares.add(new ImageView(ground), x, y);
-			}
-		}
-		// add all the entities into the dungeon
-		for (ImageView entity : initialEntities)
-			squares.getChildren().add(entity);
-
-		trackEntities();
-		trackInventory();
-		trackStatus();
-		trackGoal();
-
-		// track the volume
-		soundSlider.valueProperty().addListener(
-				(ov, old_val, new_val) -> DungeonApplication.setGameVolume(new_val.intValue()));
-	}
-
-	void trackEntities() {
-		dungeon.getEntitiesProperty().addListener(
-				new ListChangeListener<Entity>() {
-					@Override
-					public void onChanged(Change<? extends Entity> change) {
-						while (change.next()) {
-							for (Object remitem : change.getRemoved())
-								removeEntityImage((Entity) remitem);
-							for (Object additem : change.getAddedSubList())
-								addEntityImage((Entity) additem);
-						}
-					}
-				});
-	}
-
-	private void removeEntityImage(Entity entity) {
-		this.squares.getChildren().remove(entity.getNode());
-	}
-
-	private void addEntityImage(Entity entity) {
-		this.loader.onLoad(entity);
-		this.squares.getChildren().add(entity.getNode());
-	}
+    private List<ImageView> initialEntities;
+    private Dungeon dungeon;
+    private DungeonControllerLoader loader;
+    private Timeline timeline;
 
 
-	// TODO set the game info pane
-	private void trackInventory() {
-		Inventory inventory = dungeon.getInventory();
+    public DungeonController(DungeonScreen screen) {
+        this.currDungeonScreen = screen;
+    }
 
-		// treasure
-		treasureInfo.setText("Collected Treasures: " + inventory.getNumTreasuresProperty().get());
-		inventory.getNumTreasuresProperty().addListener(
-				(observable, oldValue, newValue) ->
-						treasureInfo.setText("Collected Treasures: " + newValue)
-		);
-		// bomb
-		bombInfo.setText("Collected Bombs: " + inventory.getBombNumProperty().get());
-		inventory.getBombNumProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					if ((int) newValue > 0) {
-						bombInfo.setVisible(true);
-						bombInfo.setText("Collected Bombs: " + newValue);
-					} else
-						bombInfo.setVisible(false);
-				});
-		// sword
-		if (inventory.getSwordDurabilityProperty().get() > 0) {
-			swordInfo.setVisible(true);
-			swordInfo.setText("Sword Durability: " + inventory.getSwordDurabilityProperty().get());
-		} else
-			swordInfo.setVisible(false);
-		inventory.getSwordDurabilityProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					if ((int) newValue > 0) {
-						swordInfo.setVisible(true);
-						swordInfo.setText("Sword Durability: " + newValue);
-					} else
-						swordInfo.setVisible(false);
-				});
-		// key
-		if ((int) inventory.getKeyIDProperty().get() >= 0) {
-			keyInfo.setVisible(true);
-			keyInfo.setText("Key");
-		} else
-			keyInfo.setVisible(false);
-		inventory.getKeyIDProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					if ((int) newValue >= 0) {
-						keyInfo.setVisible(true);
-						keyInfo.setText("Key");
-					} else
-						keyInfo.setVisible(false);
-				});
-	}
+    public DungeonController(Dungeon dungeon, List<ImageView> initialEntities, DungeonControllerLoader loader) {
+        setDungeon(dungeon);
+        setLoader(loader);
+        setInitialEntities(initialEntities);
+    }
 
-	private void trackStatus() {
-		Status status = dungeon.getStatus();
+    public void setInitialEntities(List<ImageView> initialEntities) {
+        this.initialEntities = initialEntities;
+    }
 
-		// invincible
-		status.getInvincibleRemainingProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					Node player = dungeon.getPlayer().getNode();
-					if ((int) newValue > 0) {
-						ColorAdjust colorAdjust = new ColorAdjust();
-						colorAdjust.setSaturation((int) newValue * 0.2);
-						player.setEffect(colorAdjust);
-					} else
-						player.setEffect(null);
-				});
-		// invisible
-		status.getInvisibleRemainingProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					Node player = dungeon.getPlayer().getNode();
-					if ((int) newValue > 0) {
-						ColorAdjust colorAdjust = new ColorAdjust();
-						colorAdjust.setBrightness(0.3 + (int) newValue * 0.05);
-						player.setEffect(colorAdjust);
-					} else
-						player.setEffect(null);
-				});
-	}
+    public void setLoader(DungeonControllerLoader loader) {
+        this.loader = loader;
+    }
 
-	private void trackGoal() {
-		Goal goal = dungeon.getGoal();
-		addGoalInfo(goal, goalInfo);
-	}
+    public void startDungeon() {
+        if (dungeon != null) {
+            trackInventory();
+            trackStatus();
+            // timeline
+            this.timeline = new Timeline();
+            this.timeline.setCycleCount(Animation.INDEFINITE);
+            this.timeline.setAutoReverse(false);
+            this.timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(DungeonApplication.getGameSpeed() * 10),
+                            e -> {
+                                if (!dungeon.isGameOver()) this.dungeon.tick();
+                            }));
+            this.timeline.play();
+        } else {
+            System.out.println("Dungeon has not been set!");
+        }
+    }
 
-	private void addGoalInfo(Goal goal, Pane pane) {
-		VBox subpane = new VBox();
-		subpane.setPadding(new Insets(0, 0, 0, 10));
-		pane.getChildren().add(subpane);
+    @FXML
+    public void initialize() {
+        // Add the ground first so it is below all other entities
+        Image ground = new Image("file:images/dirt_0_new.png");
+        for (int x = 0; x < dungeon.getWidth(); x++) {
+            for (int y = 0; y < dungeon.getHeight(); y++) {
+                squares.add(new ImageView(ground), x, y);
+            }
+        }
+        // add all the entities into the dungeon
+        for (ImageView entity : initialEntities)
+            squares.getChildren().add(entity);
 
-		CheckBox goal_check = new CheckBox(goal.toString()) {
-			@Override
-			public void arm() {} // readonly checkbox
-		};
-		goal_check.setPadding(new Insets(0, 5, 5, 0));
-		goal.getSatisfiedProperty().addListener(
-				(observable, oldValue, newValue) -> goal_check.setSelected(newValue)
-		);
-		subpane.getChildren().add(goal_check);
+        trackEntities();
+        trackInventory();
+        trackStatus();
+        trackGoal();
 
-		if (!goal.isLeaf()) {
-			for (Goal subgoal : goal.getSubgoals())
-				addGoalInfo(subgoal, subpane);
-		}
-	}
+        // track the volume
+        soundSlider.valueProperty().addListener(
+                (ov, old_val, new_val) -> DungeonApplication.setGameVolume(new_val.intValue()));
+    }
+
+    void trackEntities() {
+        dungeon.getEntitiesProperty().addListener(
+                new ListChangeListener<Entity>() {
+                    @Override
+                    public void onChanged(Change<? extends Entity> change) {
+                        while (change.next()) {
+                            for (Object remitem : change.getRemoved())
+                                removeEntityImage((Entity) remitem);
+                            for (Object additem : change.getAddedSubList())
+                                addEntityImage((Entity) additem);
+                        }
+                    }
+                });
+    }
+
+    private void removeEntityImage(Entity entity) {
+        this.squares.getChildren().remove(entity.getNode());
+    }
+
+    private void addEntityImage(Entity entity) {
+        this.loader.onLoad(entity);
+        this.squares.getChildren().add(entity.getNode());
+    }
+
+    // TODO set the game info pane
+    private void trackInventory() {
+        Inventory inventory = dungeon.getInventory();
+
+        // treasure
+        treasureInfo.setText("Collected Treasures: " + inventory.getNumTreasuresProperty().get());
+        inventory.getNumTreasuresProperty().addListener(
+                (observable, oldValue, newValue) ->
+                        treasureInfo.setText("Collected Treasures: " + newValue)
+        );
+        // bomb
+        bombInfo.setText("Collected Bombs: " + inventory.getBombNumProperty().get());
+        inventory.getBombNumProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if ((int) newValue > 0) {
+                        bombInfo.setVisible(true);
+                        bombInfo.setText("Collected Bombs: " + newValue);
+                    } else
+                        bombInfo.setVisible(false);
+                });
+        // sword
+        if (inventory.getSwordDurabilityProperty().get() > 0) {
+            swordInfo.setVisible(true);
+            swordInfo.setText("Sword Durability: " + inventory.getSwordDurabilityProperty().get());
+        } else
+            swordInfo.setVisible(false);
+        inventory.getSwordDurabilityProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if ((int) newValue > 0) {
+                        swordInfo.setVisible(true);
+                        swordInfo.setText("Sword Durability: " + newValue);
+                    } else
+                        swordInfo.setVisible(false);
+                });
+        // key
+        if ((int) inventory.getKeyIDProperty().get() >= 0) {
+            keyInfo.setVisible(true);
+            keyInfo.setText("Key");
+        } else
+            keyInfo.setVisible(false);
+        inventory.getKeyIDProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if ((int) newValue >= 0) {
+                        keyInfo.setVisible(true);
+                        keyInfo.setText("Key");
+                    } else
+                        keyInfo.setVisible(false);
+                });
+    }
+
+    private void trackStatus() {
+        Status status = dungeon.getStatus();
+
+        // invincible
+        status.getInvincibleRemainingProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    Node player = dungeon.getPlayer().getNode();
+                    if ((int) newValue > 0) {
+                        ColorAdjust colorAdjust = new ColorAdjust();
+                        colorAdjust.setSaturation((int) newValue * 0.2);
+                        player.setEffect(colorAdjust);
+                    } else
+                        player.setEffect(null);
+                });
+        // invisible
+        status.getInvisibleRemainingProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    Node player = dungeon.getPlayer().getNode();
+                    if ((int) newValue > 0) {
+                        ColorAdjust colorAdjust = new ColorAdjust();
+                        colorAdjust.setBrightness(0.3 + (int) newValue * 0.05);
+                        player.setEffect(colorAdjust);
+                    } else
+                        player.setEffect(null);
+                });
+    }
+
+    private void trackGoal() {
+        Goal goal = dungeon.getGoal();
+        addGoalInfo(goal, goalInfo);
+    }
+
+    private void addGoalInfo(Goal goal, Pane pane) {
+        VBox subpane = new VBox();
+        subpane.setPadding(new Insets(0, 0, 0, 10));
+        pane.getChildren().add(subpane);
+
+        CheckBox goal_check = new CheckBox(goal.toString()) {
+            @Override
+            public void arm() {
+            } // readonly checkbox
+        };
+        goal_check.setPadding(new Insets(0, 5, 5, 0));
+        goal.getSatisfiedProperty().addListener(
+                (observable, oldValue, newValue) -> goal_check.setSelected(newValue)
+        );
+        subpane.getChildren().add(goal_check);
+
+        if (!goal.isLeaf()) {
+            for (Goal subgoal : goal.getSubgoals())
+                addGoalInfo(subgoal, subpane);
+        }
+    }
+
+    @FXML
+    public void handleKeyPress(KeyEvent event) {
+        if (isPaused) {
+            if (event.getCode() == KeyCode.ESCAPE)
+                pause();
+            return;
+        }
+
+        switch (event.getCode()) {
+            case W:
+                dungeon.movePlayer(Direction.UP);
+                break;
+            case S:
+                dungeon.movePlayer(Direction.DOWN);
+                break;
+            case A:
+                dungeon.movePlayer(Direction.LEFT);
+                break;
+            case D:
+                dungeon.movePlayer(Direction.RIGHT);
+                break;
+            case U:
+                dungeon.placeBomb();
+                break;
+            case ESCAPE:
+                pause();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void pause() {
+        if (!isPaused)
+            pauseGame();
+        else
+            resumeGame();
+        pauseButton.setText(isPaused ? "Resume" : "Pause");
+        retryButton.setVisible(isPaused);
+        menuButton.setVisible(isPaused);
+        config.setVisible(isPaused);
+    }
 
 
-	@FXML
-	public void handleKeyPress(KeyEvent event) {
-		if (isPaused) {
-			if (event.getCode() == KeyCode.ESCAPE)
-				pause();
-			return;
-		}
+    // game pause
 
-		switch (event.getCode()) {
-			case W:
-				dungeon.movePlayer(Direction.UP);
-				break;
-			case S:
-				dungeon.movePlayer(Direction.DOWN);
-				break;
-			case A:
-				dungeon.movePlayer(Direction.LEFT);
-				break;
-			case D:
-				dungeon.movePlayer(Direction.RIGHT);
-				break;
-			case U:
-				dungeon.placeBomb();
-				break;
-			case ESCAPE:
-				pause();
-				break;
-			default:
-				break;
-		}
-	}
+    private void pauseGame() {
+        timeline.stop();
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.5);
+        squares.setEffect(colorAdjust);
 
+        this.isPaused = true;
+    }
 
-	// game pause
+    private void resumeGame() {
+        timeline.play();
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(0);
+        squares.setEffect(colorAdjust);
 
-	private void pause() {
-		if (!isPaused)
-			pauseGame();
-		else
-			resumeGame();
-		pauseButton.setText(isPaused ? "Resume" : "Pause");
-		retryButton.setVisible(isPaused);
-		menuButton.setVisible(isPaused);
-		config.setVisible(isPaused);
-	}
+        this.isPaused = false;
+    }
 
-	private void pauseGame() {
-		timeline.stop();
-		ColorAdjust colorAdjust = new ColorAdjust();
-		colorAdjust.setBrightness(-0.5);
-		squares.setEffect(colorAdjust);
+    // game over
+    public void gameOver(String gameOverInfo) {
+        getTimeline().stop();
 
-		this.isPaused = true;
-	}
+        StackPane pane = new StackPane();
+        pane.setStyle("-fx-background-color: #000000");
 
-	private void resumeGame() {
-		timeline.play();
-		ColorAdjust colorAdjust = new ColorAdjust();
-		colorAdjust.setBrightness(0);
-		squares.setEffect(colorAdjust);
+        Text info = new Text("Game Over \n\n" + gameOverInfo + "\n\n");
+        info.setTextAlignment(TextAlignment.CENTER);
+        info.setFont(new Font(18));
+        info.setFill(Color.ALICEBLUE);
 
-		this.isPaused = false;
-	}
+        Button backButton = new Button("Back to Menu");
+        backButton.setPadding(new Insets(10, 10, 10, 10));
+        backButton.setOnAction(event -> backToMenu());
 
-	// game over
-	public void gameOver(String gameOverInfo) {
-		getTimeline().stop();
+        Button retryButton = new Button("Retry");
+        retryButton.setPadding(new Insets(10, 10, 10, 10));
+        retryButton.setOnAction(event -> restart());
 
-		StackPane pane = new StackPane();
-		pane.setStyle("-fx-background-color: #000000");
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(info, retryButton, backButton);
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setSpacing(10);
+        pane.getChildren().add(vbox);
 
-		Text info = new Text("Game Over \n\n" + gameOverInfo + "\n\n");
-		info.setTextAlignment(TextAlignment.CENTER);
-		info.setFont(new Font(18));
-		info.setFill(Color.ALICEBLUE);
+        root.getScene().setRoot(pane);
+    }
 
-		Button backButton = new Button("Back to Menu");
-		backButton.setPadding(new Insets(10, 10, 10, 10));
-		backButton.setOnAction(event -> backToMenu());
+    public Dungeon getDungeon() {
+        return this.dungeon;
+    }
 
-		Button retryButton = new Button("Retry");
-		retryButton.setPadding(new Insets(10, 10, 10, 10));
-		retryButton.setOnAction(event -> restart());
+    public void setDungeon(Dungeon dungeon) {
+        this.dungeon = dungeon;
+        this.dungeon.setController(this);
+    }
 
-		VBox vbox = new VBox();
-		vbox.getChildren().addAll(info, retryButton, backButton);
-		vbox.setAlignment(Pos.CENTER);
-		vbox.setSpacing(10);
-		pane.getChildren().add(vbox);
+    @FXML
+    void pressPause(ActionEvent event) {
+        pause();
+    }
 
-		root.getScene().setRoot(pane);
-	}
+    @FXML
+    void pressRetry(ActionEvent event) {
+        this.restart();
+        resumeGame();
+    }
 
-	public Dungeon getDungeon() {
-		return this.dungeon;
-	}
+    @FXML
+    void pressMenu(ActionEvent event) {
+        backToMenu();
+    }
 
-	@FXML
-	void pressPause(ActionEvent event) {
-		pause();
-	}
+    private void backToMenu() {
+        getMenuScreen().start();
+    }
 
-	@FXML
-	void pressRetry(ActionEvent event) {
-		this.restart();
-		resumeGame();
-	}
+    public Timeline getTimeline() {
+        return timeline;
+    }
 
-	@FXML
-	void pressMenu(ActionEvent event) {
-		backToMenu();
-	}
+    public DungeonScreen getCurrDungeonScreen() {
+        return currDungeonScreen;
+    }
 
-	private void backToMenu() {
-		getMenuScreen().start();
-	}
+    public MenuScreen getMenuScreen() {
+        return menuScreen;
+    }
 
-	public void setMenuScreen(MenuScreen menuScreen) {
-		this.menuScreen = menuScreen;
-	}
+    public void setMenuScreen(MenuScreen menuScreen) {
+        this.menuScreen = menuScreen;
+    }
 
-	public Timeline getTimeline() {
-		return timeline;
-	}
+    public abstract void setNextDungeonScreen(DungeonScreen s);
 
-	public DungeonScreen getCurrDungeonScreen() {
-		return currDungeonScreen;
-	}
+    public abstract void setPrevDungeonScreen(DungeonScreen s);
 
-	public MenuScreen getMenuScreen() {
-		return menuScreen;
-	}
+    public abstract void switchNextDungeon();
 
-	public abstract void setNextDungeonScreen(DungeonScreen s);
-	public abstract void setPrevDungeonScreen(DungeonScreen s);
-	public abstract void switchNextDungeon();
-	public abstract void switchPrevDungeon();
-	public abstract void restart();
+    public abstract void switchPrevDungeon();
+
+    public abstract void restart();
 }

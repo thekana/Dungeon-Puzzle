@@ -7,27 +7,27 @@ import dungeon.model.entities.Player;
 
 public class Wizard extends Entity {
 
-	private boolean isActivated;
+    private boolean isActivated;
 
-	public Wizard(int x, int y, Dungeon dungeon) {
-		super(x, y, dungeon);
-		this.setPassThrough(false);
-		this.setImagePath("/gnome.png");
-	}
+    public Wizard(int x, int y, Dungeon dungeon) {
+        super(x, y, dungeon);
+        this.setPassThrough(false);
+        this.setImagePath("/gnome.png");
+    }
 
-	public void collideWith(Entity entity) {
-		if (entity instanceof Player)
-			this.isActivated = true;
-	}
+    public void collideWith(Entity entity) {
+        if (entity instanceof Player)
+            this.isActivated = true;
+    }
 
-	@Override
-	public EntityType type() {
-		return EntityType.WIZARD;
-	}
+    @Override
+    public EntityType type() {
+        return EntityType.WIZARD;
+    }
 
-	// for achieving goal
+    // for achieving goal
 
-	public boolean isActivated() {
-		return this.isActivated;
-	}
+    public boolean isActivated() {
+        return this.isActivated;
+    }
 }

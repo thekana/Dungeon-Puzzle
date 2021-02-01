@@ -9,24 +9,24 @@ import java.util.List;
 
 public class ExitGoal extends Goal {
 
-	public ExitGoal(Dungeon dungeon) {
-		super(dungeon);
-		setIsLeaf(true);
-	}
+    public ExitGoal(Dungeon dungeon) {
+        super(dungeon);
+        setIsLeaf(true);
+    }
 
-	public void update() {
-		Player player = getDungeon().getPlayer();
-		if (player == null)
-			setSatisfied(false);
-		else {
-			List<Entity> entitiesAtPlayers = getDungeon().getEntities(player.getX(), player.getY());
-			setSatisfied(entitiesAtPlayers.stream().anyMatch(entity -> entity instanceof Exit));
-		}
-	}
+    public void update() {
+        Player player = getDungeon().getPlayer();
+        if (player == null)
+            setSatisfied(false);
+        else {
+            List<Entity> entitiesAtPlayers = getDungeon().getEntities(player.getX(), player.getY());
+            setSatisfied(entitiesAtPlayers.stream().anyMatch(entity -> entity instanceof Exit));
+        }
+    }
 
-	@Override
-	public String toString() {
-		return "Go to the Exit";
-	}
+    @Override
+    public String toString() {
+        return "Go to the Exit";
+    }
 
 }

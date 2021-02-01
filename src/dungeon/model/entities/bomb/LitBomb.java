@@ -6,35 +6,35 @@ import dungeon.model.entities.EntityType;
 
 public class LitBomb extends Entity {
 
-	private LitBombState state;
+    private LitBombState state;
 
-	public LitBomb(int x, int y, Dungeon dungeon) {
-		super(x, y, dungeon);
-		this.state = new LitBombState1(this);
-		this.setPassThrough(false);
-	}
+    public LitBomb(int x, int y, Dungeon dungeon) {
+        super(x, y, dungeon);
+        this.state = new LitBombState1(this);
+        this.setPassThrough(false);
+    }
 
-	public void collideWith(Entity entity) {
-	}
+    public void collideWith(Entity entity) {
+    }
 
-	@Override
-	public EntityType type() {
-		return EntityType.LITBOMB;
-	}
+    @Override
+    public EntityType type() {
+        return EntityType.LITBOMB;
+    }
 
-	public void updatePerMovement() {
-		this.nextState();
-	}
+    public void updatePerMovement() {
+        this.nextState();
+    }
 
-	private void nextState() {
-		state.nextState();
-	}
+    private void nextState() {
+        state.nextState();
+    }
 
-	/**
-	 * @param state the state to set
-	 */
-	public void setState(LitBombState state) {
-		this.state = state;
-	}
+    /**
+     * @param state the state to set
+     */
+    public void setState(LitBombState state) {
+        this.state = state;
+    }
 
 }

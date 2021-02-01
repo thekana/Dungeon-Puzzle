@@ -1,29 +1,31 @@
 package dungeon.model.entities;
 
+import dungeon.model.Dungeon;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
-import dungeon.model.Dungeon;
 
 /**
  * An entity in the dungeon.
- * @author Robert Clifton-Everest
  *
+ * @author Robert Clifton-Everest
  */
 public abstract class Entity {
 
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
-    private StringProperty imagePath;
-    private IntegerProperty x, y;
+    private final StringProperty imagePath;
+    private final IntegerProperty x;
+    private final IntegerProperty y;
+    private final Dungeon dungeon;
     private Node node;
-    private Dungeon dungeon;
     private Boolean passThrough;
 
     /**
      * Create an entity positioned in square (x,y)
+     *
      * @param x
      * @param y
      */
@@ -56,20 +58,20 @@ public abstract class Entity {
         return imagePath;
     }
 
-    public void setImagePath(String path) {
-        this.imagePath.set(path);
-    }
-
     public String getImagePath() {
         return this.imagePath.get();
     }
 
-    public void setNode(Node node) {
-        this.node = node;
+    public void setImagePath(String path) {
+        this.imagePath.set(path);
     }
 
     public Node getNode() {
         return this.node;
+    }
+
+    public void setNode(Node node) {
+        this.node = node;
     }
 
 
@@ -88,6 +90,6 @@ public abstract class Entity {
     public Dungeon getDungeon() {
         return this.dungeon;
     }
-    
+
     public abstract EntityType type();
 }

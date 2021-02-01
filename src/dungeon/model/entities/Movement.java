@@ -21,7 +21,7 @@ public class Movement {
 
         if (dungeon.canOccupyGrid(target_X, target_Y)) {
             entity.x().set(target_X);
-			entity.y().set(target_Y);
+            entity.y().set(target_Y);
         }
         // after a movement, no matter success or fails, there would be a collision
         notifyCollision(entity, target_X, target_Y);

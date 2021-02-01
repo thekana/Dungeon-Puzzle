@@ -1,9 +1,9 @@
 package dungeon.model.entities.door;
 
 public interface DoorState {
-	public String getImagePath();
+    public String getImagePath();
 
-	public boolean canPassThrough();
+    public boolean canPassThrough();
 
-	public void nextState();
+    public void nextState();
 }

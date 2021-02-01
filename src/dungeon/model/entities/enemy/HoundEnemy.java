@@ -1,7 +1,8 @@
 package dungeon.model.entities.enemy;
 
 import dungeon.model.Dungeon;
-import dungeon.model.entities.*;
+import dungeon.model.entities.Movable;
+import dungeon.model.entities.Player;
 
 public class HoundEnemy extends Enemy implements Movable {
 
