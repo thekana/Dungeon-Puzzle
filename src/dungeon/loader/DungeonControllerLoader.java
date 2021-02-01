@@ -29,7 +29,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     @Override
     public void onLoad(Entity entity) {
         try {
-            Image image = new Image("file:images/" + entity.getImagePath());
+            Image image = new Image(entity.getImagePath());
             ImageView view = new ImageView(image);
             addEntity(entity, view);
         } catch (Exception e) {

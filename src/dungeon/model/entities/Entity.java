@@ -63,7 +63,7 @@ public abstract class Entity {
     }
 
     public void setImagePath(String path) {
-        this.imagePath.set(path);
+        this.imagePath.set("file:images/" + path);
     }
 
     public Node getNode() {
