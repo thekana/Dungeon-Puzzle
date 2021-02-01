@@ -1,4 +1,4 @@
-package unsw.dungeon.model.status;
+package dungeon.model.status;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

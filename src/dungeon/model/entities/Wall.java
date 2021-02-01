@@ -1,6 +1,6 @@
-package unsw.dungeon.model.entities;
+package dungeon.model.entities;
 
-import unsw.dungeon.model.Dungeon;
+import dungeon.model.Dungeon;
 
 public class Wall extends Entity {
 

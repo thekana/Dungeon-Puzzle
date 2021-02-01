@@ -1,6 +1,6 @@
-package unsw.dungeon.model.goal;
+package dungeon.model.goal;
 
-import unsw.dungeon.model.Dungeon;
+import dungeon.model.Dungeon;
 
 import java.util.ArrayList;
 import java.util.List;

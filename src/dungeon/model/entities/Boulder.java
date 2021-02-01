@@ -1,7 +1,7 @@
-package unsw.dungeon.model.entities;
+package dungeon.model.entities;
 
-import unsw.dungeon.model.Direction;
-import unsw.dungeon.model.Dungeon;
+import dungeon.model.Direction;
+import dungeon.model.Dungeon;
 
 public class Boulder extends Entity implements Movable {
 

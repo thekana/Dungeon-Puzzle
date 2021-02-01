@@ -1,7 +1,7 @@
-package unsw.dungeon.model.goal;
+package dungeon.model.goal;
 
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.npc.Princess;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.npc.Princess;
 
 public class PrincessGoal extends Goal {
 

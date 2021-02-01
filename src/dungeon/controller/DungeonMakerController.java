@@ -1,4 +1,4 @@
-package unsw.dungeon.controller;
+package dungeon.controller;
 
 import java.util.Arrays;
 
@@ -9,8 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import unsw.dungeon.maker.DungeonMaker;
-import unsw.dungeon.view.MenuScreen;
+import dungeon.maker.DungeonMaker;
+import dungeon.view.MenuScreen;
 
 public class DungeonMakerController {
 	@FXML

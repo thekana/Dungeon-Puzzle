@@ -1,9 +1,9 @@
-package unsw.dungeon.model.goal;
+package dungeon.model.goal;
 
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.Entity;
-import unsw.dungeon.model.entities.Exit;
-import unsw.dungeon.model.entities.Player;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.Entity;
+import dungeon.model.entities.Exit;
+import dungeon.model.entities.Player;
 
 import java.util.List;
 

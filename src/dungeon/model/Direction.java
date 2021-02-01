@@ -1,7 +1,7 @@
 /**
  *
  */
-package unsw.dungeon.model;
+package dungeon.model;
 
 public enum Direction {
 

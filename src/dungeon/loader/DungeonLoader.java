@@ -1,20 +1,20 @@
-package unsw.dungeon.loader;
+package dungeon.loader;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.*;
-import unsw.dungeon.model.entities.bomb.UnlitBomb;
-import unsw.dungeon.model.entities.door.Door;
-import unsw.dungeon.model.entities.enemy.HoundEnemy;
-import unsw.dungeon.model.entities.enemy.HumanEnemy;
-import unsw.dungeon.model.entities.enemy.StoneEnemy;
-import unsw.dungeon.model.entities.npc.Princess;
-import unsw.dungeon.model.entities.npc.Wizard;
-import unsw.dungeon.model.entities.potion.InvinciblePotion;
-import unsw.dungeon.model.entities.potion.InvisiblePotion;
-import unsw.dungeon.model.goal.*;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.*;
+import dungeon.model.entities.bomb.UnlitBomb;
+import dungeon.model.entities.door.Door;
+import dungeon.model.entities.enemy.HoundEnemy;
+import dungeon.model.entities.enemy.HumanEnemy;
+import dungeon.model.entities.enemy.StoneEnemy;
+import dungeon.model.entities.npc.Princess;
+import dungeon.model.entities.npc.Wizard;
+import dungeon.model.entities.potion.InvinciblePotion;
+import dungeon.model.entities.potion.InvisiblePotion;
+import dungeon.model.goal.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

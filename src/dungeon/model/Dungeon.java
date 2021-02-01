@@ -1,26 +1,26 @@
 /**
  *
  */
-package unsw.dungeon.model;
+package dungeon.model;
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-import unsw.dungeon.controller.DungeonController;
-import unsw.dungeon.soundplayer.DungeonSound;
-import unsw.dungeon.model.entities.*;
-import unsw.dungeon.model.entities.bomb.ExplodedBomb;
-import unsw.dungeon.model.entities.bomb.LitBomb;
-import unsw.dungeon.model.entities.bomb.UnlitBomb;
-import unsw.dungeon.model.entities.door.Door;
-import unsw.dungeon.model.entities.enemy.Enemy;
-import unsw.dungeon.model.entities.enemy.StoneEnemy;
-import unsw.dungeon.model.entities.npc.Princess;
-import unsw.dungeon.model.entities.npc.Wizard;
-import unsw.dungeon.model.entities.potion.Potion;
-import unsw.dungeon.model.goal.Goal;
-import unsw.dungeon.model.inventory.Inventory;
-import unsw.dungeon.model.status.Status;
+import dungeon.controller.DungeonController;
+import dungeon.soundplayer.DungeonSound;
+import dungeon.model.entities.*;
+import dungeon.model.entities.bomb.ExplodedBomb;
+import dungeon.model.entities.bomb.LitBomb;
+import dungeon.model.entities.bomb.UnlitBomb;
+import dungeon.model.entities.door.Door;
+import dungeon.model.entities.enemy.Enemy;
+import dungeon.model.entities.enemy.StoneEnemy;
+import dungeon.model.entities.npc.Princess;
+import dungeon.model.entities.npc.Wizard;
+import dungeon.model.entities.potion.Potion;
+import dungeon.model.goal.Goal;
+import dungeon.model.inventory.Inventory;
+import dungeon.model.status.Status;
 
 import java.util.LinkedList;
 import java.util.List;

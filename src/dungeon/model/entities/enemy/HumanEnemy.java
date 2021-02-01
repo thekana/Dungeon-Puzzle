@@ -1,7 +1,7 @@
-package unsw.dungeon.model.entities.enemy;
+package dungeon.model.entities.enemy;
 
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.*;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.*;
 
 public class HumanEnemy extends Enemy implements Movable {
 

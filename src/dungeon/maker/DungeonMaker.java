@@ -1,4 +1,4 @@
-package unsw.dungeon.maker;
+package dungeon.maker;
 
 import java.io.FileWriter;
 import java.io.IOException;

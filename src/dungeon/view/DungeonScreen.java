@@ -1,12 +1,12 @@
-package unsw.dungeon.view;
+package dungeon.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import unsw.dungeon.controller.DungeonController;
-import unsw.dungeon.loader.DungeonControllerLoader;
-import unsw.dungeon.model.Dungeon;
+import dungeon.controller.DungeonController;
+import dungeon.loader.DungeonControllerLoader;
+import dungeon.model.Dungeon;
 
 import java.io.IOException;
 

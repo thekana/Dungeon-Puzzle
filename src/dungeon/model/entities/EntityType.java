@@ -1,4 +1,4 @@
-package unsw.dungeon.model.entities;
+package dungeon.model.entities;
 
 public enum EntityType {
 	UNLITBOMB, LITBOMB, DOOR, EXIT, KEY, INVINCIBLEPOTION, INVISIBLEPOTION, SWITCH, SWORD, TREASURE, WALL, BOULDER,

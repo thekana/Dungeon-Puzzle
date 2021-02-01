@@ -1,11 +1,11 @@
-package unsw.dungeon.model.entities;
+package dungeon.model.entities;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
-import unsw.dungeon.model.Dungeon;
+import dungeon.model.Dungeon;
 
 /**
  * An entity in the dungeon.

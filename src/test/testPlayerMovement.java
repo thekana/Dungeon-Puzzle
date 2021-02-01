@@ -1,10 +1,10 @@
-package unsw.test;
+package test;
 
 import org.junit.jupiter.api.Test;
-import unsw.dungeon.model.Direction;
-import unsw.dungeon.model.entities.Boulder;
-import unsw.dungeon.model.entities.Wall;
-import unsw.dungeon.model.entities.door.*;
+import dungeon.model.Direction;
+import dungeon.model.entities.Boulder;
+import dungeon.model.entities.Wall;
+import dungeon.model.entities.door.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

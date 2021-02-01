@@ -1,4 +1,4 @@
-package unsw.dungeon.model.entities.door;
+package dungeon.model.entities.door;
 
 public class DoorOpenedState implements DoorState {
 

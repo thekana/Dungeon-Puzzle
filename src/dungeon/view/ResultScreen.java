@@ -1,4 +1,4 @@
-package unsw.dungeon.view;
+package dungeon.view;
 
 public class ResultScreen {
 }

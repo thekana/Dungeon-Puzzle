@@ -1,4 +1,4 @@
-package unsw.dungeon.view;
+package dungeon.view;
 
 import java.io.IOException;
 
@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import unsw.dungeon.controller.DungeonMakerController;
+import dungeon.controller.DungeonMakerController;
 
 public class DungeonMakerScreen {
 

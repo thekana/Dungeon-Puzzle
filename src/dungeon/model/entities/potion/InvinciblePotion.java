@@ -1,7 +1,7 @@
-package unsw.dungeon.model.entities.potion;
+package dungeon.model.entities.potion;
 
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.EntityType;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.EntityType;
 
 public class InvinciblePotion extends Potion {
 

@@ -1,9 +1,9 @@
-package unsw.dungeon.model.entities.npc;
+package dungeon.model.entities.npc;
 
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.Entity;
-import unsw.dungeon.model.entities.EntityType;
-import unsw.dungeon.model.entities.Player;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.Entity;
+import dungeon.model.entities.EntityType;
+import dungeon.model.entities.Player;
 
 public class Princess extends Entity {
 

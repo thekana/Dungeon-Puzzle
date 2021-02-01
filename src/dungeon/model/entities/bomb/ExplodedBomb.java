@@ -1,6 +1,6 @@
-package unsw.dungeon.model.entities.bomb;
+package dungeon.model.entities.bomb;
 
-import unsw.dungeon.model.Dungeon;
+import dungeon.model.Dungeon;
 
 public class ExplodedBomb extends LitBomb {
 

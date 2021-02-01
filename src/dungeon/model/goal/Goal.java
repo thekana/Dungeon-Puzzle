@@ -1,8 +1,8 @@
-package unsw.dungeon.model.goal;
+package dungeon.model.goal;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import unsw.dungeon.model.Dungeon;
+import dungeon.model.Dungeon;
 
 import java.util.List;
 

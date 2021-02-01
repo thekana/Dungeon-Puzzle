@@ -1,7 +1,7 @@
-package unsw.dungeon.soundplayer;
+package dungeon.soundplayer;
 
+import dungeon.DungeonApplication;
 import javafx.scene.media.AudioClip;
-import unsw.dungeon.DungeonApplication;
 
 import java.io.File;
 import java.util.HashMap;

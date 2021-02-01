@@ -1,7 +1,7 @@
-package unsw.dungeon.model.goal;
+package dungeon.model.goal;
 
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.Switch;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.Switch;
 
 public class SwitchGoal extends Goal {
 

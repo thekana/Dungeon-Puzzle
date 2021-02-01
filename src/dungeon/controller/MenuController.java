@@ -1,4 +1,4 @@
-package unsw.dungeon.controller;
+package dungeon.controller;
 
 import java.io.File;
 
@@ -8,10 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Slider;
 import javafx.scene.text.Text;
-import unsw.dungeon.DungeonApplication;
-import unsw.dungeon.loader.DungeonScreenLoader;
-import unsw.dungeon.view.DungeonMakerScreen;
-import unsw.dungeon.view.DungeonScreen;
+import dungeon.DungeonApplication;
+import dungeon.loader.DungeonScreenLoader;
+import dungeon.view.DungeonMakerScreen;
+import dungeon.view.DungeonScreen;
 
 public class MenuController {
 
@@ -92,9 +92,8 @@ public class MenuController {
 	public void startFreeDungeonScreen() {
 		if (dungeonChoice.getValue() == null)
 			return;
-		DungeonScreen freeScreen = DungeonScreenLoader.loadFreeScreen(dungeonChoice.getValue().toString());
-		if (freeScreen != null)
-			freeScreen.start();
+		DungeonScreen freeScreen = DungeonScreenLoader.loadFreeScreen(dungeonChoice.getValue());
+		freeScreen.start();
 	}
 
 	public void startStoryDungeonScreen() {

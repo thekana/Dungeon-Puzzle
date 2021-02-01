@@ -1,4 +1,4 @@
-package unsw.dungeon.model.inventory;
+package dungeon.model.inventory;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

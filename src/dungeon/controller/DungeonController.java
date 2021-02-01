@@ -1,4 +1,4 @@
-package unsw.dungeon.controller;
+package dungeon.controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -21,18 +21,18 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
-import unsw.dungeon.DungeonApplication;
-import unsw.dungeon.soundplayer.DungeonSound;
-import unsw.dungeon.soundplayer.DungeonSoundPlayer;
-import unsw.dungeon.loader.DungeonControllerLoader;
-import unsw.dungeon.model.Direction;
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.Entity;
-import unsw.dungeon.model.goal.Goal;
-import unsw.dungeon.model.inventory.Inventory;
-import unsw.dungeon.model.status.Status;
-import unsw.dungeon.view.DungeonScreen;
-import unsw.dungeon.view.MenuScreen;
+import dungeon.DungeonApplication;
+import dungeon.soundplayer.DungeonSound;
+import dungeon.soundplayer.DungeonSoundPlayer;
+import dungeon.loader.DungeonControllerLoader;
+import dungeon.model.Direction;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.Entity;
+import dungeon.model.goal.Goal;
+import dungeon.model.inventory.Inventory;
+import dungeon.model.status.Status;
+import dungeon.view.DungeonScreen;
+import dungeon.view.MenuScreen;
 
 import java.util.List;
 

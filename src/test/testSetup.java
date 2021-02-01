@@ -1,10 +1,10 @@
-package unsw.test;
+package test;
 
 import org.junit.jupiter.api.AfterEach;
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.Player;
-import unsw.dungeon.model.goal.AndGoals;
-import unsw.dungeon.model.goal.Goal;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.Player;
+import dungeon.model.goal.AndGoals;
+import dungeon.model.goal.Goal;
 
 public class testSetup {
 

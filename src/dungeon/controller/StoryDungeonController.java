@@ -1,13 +1,13 @@
-package unsw.dungeon.controller;
+package dungeon.controller;
 
 import java.util.List;
 
 import javafx.scene.image.ImageView;
-import unsw.dungeon.DungeonApplication;
-import unsw.dungeon.loader.DungeonControllerLoader;
-import unsw.dungeon.loader.DungeonScreenLoader;
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.view.DungeonScreen;
+import dungeon.DungeonApplication;
+import dungeon.loader.DungeonControllerLoader;
+import dungeon.loader.DungeonScreenLoader;
+import dungeon.model.Dungeon;
+import dungeon.view.DungeonScreen;
 
 public class StoryDungeonController extends DungeonController {
 

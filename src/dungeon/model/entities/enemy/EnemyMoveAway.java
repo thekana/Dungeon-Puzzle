@@ -1,7 +1,7 @@
-package unsw.dungeon.model.entities.enemy;
+package dungeon.model.entities.enemy;
 
-import unsw.dungeon.model.Direction;
-import unsw.dungeon.model.entities.Player;
+import dungeon.model.Direction;
+import dungeon.model.entities.Player;
 
 import java.util.Random;
 

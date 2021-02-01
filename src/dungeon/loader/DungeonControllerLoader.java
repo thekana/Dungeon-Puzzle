@@ -1,4 +1,4 @@
-package unsw.dungeon.loader;
+package dungeon.loader;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -6,8 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import unsw.dungeon.controller.DungeonController;
-import unsw.dungeon.model.entities.Entity;
+import dungeon.controller.DungeonController;
+import dungeon.model.entities.Entity;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

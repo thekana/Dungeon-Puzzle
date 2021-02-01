@@ -1,4 +1,4 @@
-package unsw.dungeon.model.entities.bomb;
+package dungeon.model.entities.bomb;
 
 public interface LitBombState {
 	public String getImagePath();

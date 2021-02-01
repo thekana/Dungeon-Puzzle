@@ -1,14 +1,14 @@
-package unsw.test;
+package test;
 
 import org.junit.jupiter.api.Test;
-import unsw.dungeon.model.Direction;
-import unsw.dungeon.model.entities.*;
-import unsw.dungeon.model.entities.bomb.LitBomb;
-import unsw.dungeon.model.entities.bomb.UnlitBomb;
-import unsw.dungeon.model.entities.door.Door;
-import unsw.dungeon.model.entities.enemy.HoundEnemy;
-import unsw.dungeon.model.entities.enemy.HumanEnemy;
-import unsw.dungeon.model.entities.potion.InvinciblePotion;
+import dungeon.model.Direction;
+import dungeon.model.entities.*;
+import dungeon.model.entities.bomb.LitBomb;
+import dungeon.model.entities.bomb.UnlitBomb;
+import dungeon.model.entities.door.Door;
+import dungeon.model.entities.enemy.HoundEnemy;
+import dungeon.model.entities.enemy.HumanEnemy;
+import dungeon.model.entities.potion.InvinciblePotion;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,7 +1,7 @@
-package unsw.dungeon.model.entities.enemy;
+package dungeon.model.entities.enemy;
 
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.model.entities.Movable;
+import dungeon.model.Dungeon;
+import dungeon.model.entities.Movable;
 
 public class StoneEnemy extends Enemy implements Movable {
 

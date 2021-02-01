@@ -1,6 +1,6 @@
-package unsw.dungeon.model.entities.enemy;
+package dungeon.model.entities.enemy;
 
-import unsw.dungeon.model.entities.Player;
+import dungeon.model.entities.Player;
 
 public interface EnemyBehaviour {
 	public void move(Enemy enemy, Player player);

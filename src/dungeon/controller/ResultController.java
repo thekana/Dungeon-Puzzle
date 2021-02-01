@@ -1,4 +1,4 @@
-package unsw.dungeon.controller;
+package dungeon.controller;
 
 public class ResultController {
 }

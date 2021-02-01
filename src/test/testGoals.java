@@ -1,10 +1,10 @@
-package unsw.test;
+package test;
 
 import org.junit.jupiter.api.Test;
-import unsw.dungeon.model.Direction;
-import unsw.dungeon.model.entities.*;
-import unsw.dungeon.model.entities.enemy.HumanEnemy;
-import unsw.dungeon.model.goal.*;
+import dungeon.model.Direction;
+import dungeon.model.entities.*;
+import dungeon.model.entities.enemy.HumanEnemy;
+import dungeon.model.goal.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

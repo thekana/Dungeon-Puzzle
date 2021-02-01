@@ -1,10 +1,10 @@
-package unsw.dungeon;
+package dungeon;
 
+import dungeon.loader.DungeonScreenLoader;
+import dungeon.view.DungeonMakerScreen;
+import dungeon.view.MenuScreen;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import unsw.dungeon.view.DungeonMakerScreen;
-import unsw.dungeon.loader.DungeonScreenLoader;
-import unsw.dungeon.view.MenuScreen;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ public class DungeonApplication extends Application {
 	// Global config
 	private static int game_speed = 50;
 	private static int game_volume = 50;
-	private static String[] levels_json = new String[] {
+	private static final String[] levels_json = new String[] {
 			"intro.json",
 			"level1.json",
 			"level6.json",
@@ -61,7 +61,7 @@ public class DungeonApplication extends Application {
 		menuScreen.start();
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		launch(args);
 	}
 }

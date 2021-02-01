@@ -1,11 +1,11 @@
-package unsw.dungeon.controller;
+package dungeon.controller;
 
 import java.util.List;
 
 import javafx.scene.image.ImageView;
-import unsw.dungeon.loader.DungeonControllerLoader;
-import unsw.dungeon.model.Dungeon;
-import unsw.dungeon.view.DungeonScreen;
+import dungeon.loader.DungeonControllerLoader;
+import dungeon.model.Dungeon;
+import dungeon.view.DungeonScreen;
 
 public class FreeDungeonController extends DungeonController {
 

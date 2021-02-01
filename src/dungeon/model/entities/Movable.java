@@ -1,7 +1,7 @@
-package unsw.dungeon.model.entities;
+package dungeon.model.entities;
 
 import javafx.beans.property.IntegerProperty;
-import unsw.dungeon.model.Direction;
+import dungeon.model.Direction;
 
 public interface Movable {
 
