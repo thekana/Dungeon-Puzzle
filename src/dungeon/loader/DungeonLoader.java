@@ -30,7 +30,7 @@ import java.io.FileReader;
  */
 public abstract class DungeonLoader {
 
-	private JSONObject json;
+	private final JSONObject json;
 
 	public DungeonLoader(String filename) throws FileNotFoundException {
 		json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));

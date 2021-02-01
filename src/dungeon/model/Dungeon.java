@@ -7,7 +7,6 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import dungeon.controller.DungeonController;
-import dungeon.soundplayer.DungeonSound;
 import dungeon.model.entities.*;
 import dungeon.model.entities.bomb.ExplodedBomb;
 import dungeon.model.entities.bomb.LitBomb;
@@ -205,29 +204,19 @@ public class Dungeon {
 		switch (entity.type()) {
 		case SWORD:
 			pickUpSword((Sword) entity);
-			if (controller != null)
-				controller.playSound(DungeonSound.ACHIEVE_ITEM);
 			break;
 		case TREASURE:
 			pickUpTreasure((Treasure) entity);
-			if (controller != null)
-				controller.playSound(DungeonSound.ACHIEVE_ITEM);
 			break;
 		case UNLITBOMB:
 			pickUpBomb((UnlitBomb) entity);
-			if (controller != null)
-				controller.playSound(DungeonSound.ACHIEVE_ITEM);
 			break;
 		case KEY:
 			pickUpKey((Key) entity);
-			if (controller != null)
-				controller.playSound(DungeonSound.ACHIEVE_ITEM);
 			break;
 		case INVINCIBLEPOTION:
 		case INVISIBLEPOTION:
 			pickUpPotion((Potion) entity);
-			if (controller != null)
-				controller.playSound(DungeonSound.POTION);
 			break;
 		default:
 			break;
@@ -280,8 +269,6 @@ public class Dungeon {
 	}
 
 	public void fightEnemy(Enemy enemy) {
-		if (controller != null)
-			controller.playSound(DungeonSound.FIGHT);
 		if (isPlayerInvincible()) {
 			removeEntity(enemy);
 		} else if (this.getInventory().useSword()) {
@@ -303,8 +290,6 @@ public class Dungeon {
 		else {
 			this.getInventory().useKey();
 			door.open();
-			if (controller != null)
-				controller.playSound(DungeonSound.OPEN_DOOR);
 		}
 	}
 
@@ -341,9 +326,6 @@ public class Dungeon {
 				break;
 			}
 		}
-
-		if (controller != null)
-			controller.playSound(DungeonSound.EXPLOSION);
 	}
 
 	// to finish a game over
@@ -373,21 +355,18 @@ public class Dungeon {
 			removeEntity(this.player);
 			this.player = null;
 			if (controller != null)
-				controller.playSound(DungeonSound.GAME_OVER);
 			gameOver();
 		}
 	}
 
 	public void switchNextDungeon() {
 		if (controller != null) {
-			controller.playSound(DungeonSound.SWITCH_FLOOR);
 			this.controller.switchNextDungeon();
 		}
 	}
 
 	public void switchPrevDungeon() {
 		if (controller != null) {
-			controller.playSound(DungeonSound.SWITCH_FLOOR);
 			this.controller.switchPrevDungeon();
 		}
 	}

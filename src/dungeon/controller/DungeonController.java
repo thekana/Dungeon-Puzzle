@@ -22,8 +22,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import dungeon.DungeonApplication;
-import dungeon.soundplayer.DungeonSound;
-import dungeon.soundplayer.DungeonSoundPlayer;
 import dungeon.loader.DungeonControllerLoader;
 import dungeon.model.Direction;
 import dungeon.model.Dungeon;
@@ -120,7 +118,6 @@ public abstract class DungeonController {
 					new KeyFrame(Duration.millis(DungeonApplication.getGameSpeed() * 10),
 							e -> { if (!dungeon.isGameOver()) this.dungeon.tick();}));
 			this.timeline.play();
-			this.playBGM();
 		} else {
 			System.out.println("Dungeon has not been set!");
 		}
@@ -129,7 +126,7 @@ public abstract class DungeonController {
 	@FXML
 	public void initialize() {
 		// Add the ground first so it is below all other entities
-		Image ground = new Image("/dirt_0_new.png");
+		Image ground = new Image("file:images/dirt_0_new.png");
 		for (int x = 0; x < dungeon.getWidth(); x++) {
 			for (int y = 0; y < dungeon.getHeight(); y++) {
 				squares.add(new ImageView(ground), x, y);
@@ -326,8 +323,6 @@ public abstract class DungeonController {
 
 	private void pauseGame() {
 		timeline.stop();
-		DungeonSoundPlayer.stopBGM();
-
 		ColorAdjust colorAdjust = new ColorAdjust();
 		colorAdjust.setBrightness(-0.5);
 		squares.setEffect(colorAdjust);
@@ -337,8 +332,6 @@ public abstract class DungeonController {
 
 	private void resumeGame() {
 		timeline.play();
-		DungeonSoundPlayer.playBGM();
-
 		ColorAdjust colorAdjust = new ColorAdjust();
 		colorAdjust.setBrightness(0);
 		squares.setEffect(colorAdjust);
@@ -348,7 +341,6 @@ public abstract class DungeonController {
 
 	// game over
 	public void gameOver(String gameOverInfo) {
-		DungeonSoundPlayer.stopBGM();
 		getTimeline().stop();
 
 		StackPane pane = new StackPane();
@@ -397,20 +389,11 @@ public abstract class DungeonController {
 	}
 
 	private void backToMenu() {
-		DungeonSoundPlayer.stopBGM();
 		getMenuScreen().start();
 	}
 
 	public void setMenuScreen(MenuScreen menuScreen) {
 		this.menuScreen = menuScreen;
-	}
-
-	public void playSound(DungeonSound dungeonSound) {
-		DungeonSoundPlayer.playSoundEffect(dungeonSound);
-	}
-
-	public void playBGM() {
-		DungeonSoundPlayer.playBGM();
 	}
 
 	public Timeline getTimeline() {

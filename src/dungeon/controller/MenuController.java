@@ -86,6 +86,7 @@ public class MenuController {
 
 	@FXML
 	void handleRefreshButton(ActionEvent event) {
+		System.out.println("Refresh");
 		this.refreshDungeonList();
 	}
 
